@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Hostname.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 15:53:11 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 20:46:11 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/06/30 21:04:15 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	Hostname::getInfo(){
 	_host = " Hostname: " + _host;
 	this->_user = username;
 	_user = " Username: " + _user;
-//	std::cout << "hostname: " << getHost() << std::endl;
-//	std::cout << "username: " << getUser() << std::endl;
 }
 
 std::string Hostname::getHost(){
@@ -52,6 +50,8 @@ std::string Hostname::getUser(){
 //}
 
 void Hostname::display() {
+	start_color();
+	init_pair(1, COLOR_YELLOW, COLOR_BLACK);
 	setlocale(LC_ALL, "");
 	for (int i = 0; i < _height; i++) {
 		for (int j = 0; j < _width; j++) {
@@ -70,7 +70,9 @@ void Hostname::display() {
 			wrefresh(_win);
 		}
 	}
-	mvwaddstr(_win, 1, 2, "   Host/user module");
+	wattron(_win, COLOR_PAIR(1));
+	mvwaddstr(_win, 1, 2, "     Host/user module");
+	wattroff(_win, COLOR_PAIR(1));
 	mvwaddstr(_win, 2, 1, _host.c_str());
 	mvwaddstr(_win, 3, 1, _user.c_str());
 }
