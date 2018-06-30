@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   CPU.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:04:58 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 18:24:01 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/30 20:23:56 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "CPU.hpp"
 
-CPU::CPU(){};
+CPU::CPU(){}
 
-CPU::~CPU(){};
+CPU::~CPU(){}
 
 
 void CPU::getInfo(){
@@ -42,22 +42,22 @@ void CPU::getInfo(){
 	system("rm newinfo");
 }
 
-std::string getCpuName(){
+std::string CPU::getCpuName(){
 	return this->_cpuName;
 }
 
-std::string getCores(){
+std::string CPU::getCores(){
 	return this->_cores;
 }
 
-double getUserCpu(){
+double CPU::getUserCpu(){
 	return this->_usercpu;
 }
 
-double getSysCpu(){
+double CPU::getSysCpu(){
 	return this->_syscpu;
 }
 
-double getIdle(){
+double CPU::getIdle(){
 	return this->_idle;
 }

@@ -22,8 +22,8 @@ public:
 	RAM();
 	~RAM();
 	virtual void getInfo();
-	int getRamUsed(){};
-	int getRamFree(){};
+	int getRamUsed();
+	int getRamFree();
 };
 
 #endif

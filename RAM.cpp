@@ -12,9 +12,9 @@
 
 #include "RAM.hpp"
 
-RAM::RAM(){};
+RAM::RAM(){}
 
-RAM::~RAM(){};
+RAM::~RAM(){}
 
 void RAM::getInfo(){
 	std::string line;
