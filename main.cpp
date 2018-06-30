@@ -6,7 +6,7 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 12:41:10 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 20:41:00 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/06/30 21:32:17 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "IMonitorModule.hpp"
 #include "Hostname.hpp"
 //#include "OS.hpp"
-//#include "CPU.hpp"
-//#include "RAM.hpp"
+#include "CPU.hpp"
+#include "RAM.hpp"
 //#include "DateTime.hpp"
 
 int	main(){
@@ -25,11 +25,13 @@ int	main(){
 	curs_set(0);
 	Hostname host;
 //	OS os;
-//	CPU cpu;
-//	RAM ram;
+	CPU cpu;
+	RAM ram;
 //	DateTime time;
 	while (getch() != 27) {
 		host.display();
+		ram.display();
+		cpu.display();
 	}
 	endwin();
 //	os.getInfo();

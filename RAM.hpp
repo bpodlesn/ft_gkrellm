@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RAM.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:08:47 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 18:21:36 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/30 20:53:48 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 # define RAM_HPP
 
 # include "IMonitorModule.hpp"
+#include "IMonitorDisplay.hpp"
 
-class RAM : public IMonitorModule{
+class RAM : public IMonitorModule, public IMonitorDisplay{
 	int	_ramused;
 	int _ramfree;
 public:
 	RAM();
 	~RAM();
-	virtual void getInfo();
+	void getInfo();
+	void display();
 	int getRamUsed();
 	int getRamFree();
 };

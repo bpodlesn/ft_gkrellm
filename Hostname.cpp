@@ -6,7 +6,7 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 15:53:11 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 20:46:11 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/06/30 20:46:17 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	Hostname::getInfo(){
 	_host = " Hostname: " + _host;
 	this->_user = username;
 	_user = " Username: " + _user;
-//	std::cout << "hostname: " << getHost() << std::endl;
-//	std::cout << "username: " << getUser() << std::endl;
 }
 
 std::string Hostname::getHost(){

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CPU.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:04:35 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 18:23:21 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/30 21:23:19 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define CPU_HPP
 
 #include "IMonitorModule.hpp"
+#include "IMonitorDisplay.hpp"
 
-class CPU
-{
+class CPU : public IMonitorModule, public IMonitorDisplay {
 	std::string _cpuName;
 	std::string _cores;
 	double _usercpu;
@@ -25,7 +25,8 @@ class CPU
 public:
 	CPU();
 	~CPU();
-	virtual void getInfo();
+	void getInfo();
+	void display();
 	std::string getCpuName();
 	std::string getCores();
 	double getUserCpu();
