@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IMonitorModule.hpp                                 :+:      :+:    :+:   */
+/*   OS.hpp                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/30 12:34:26 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 16:01:00 by bpodlesn         ###   ########.fr       */
+/*   Created: 2018/06/30 16:01:43 by bpodlesn          #+#    #+#             */
+/*   Updated: 2018/06/30 17:09:13 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMONITORMODULE_HPP
-# define IMONITORMODULE_HPP
-#include <iostream>
-#include <limits.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <time.h>
-#include <errno.h>
-#include <sys/sysctl.h>
-#include <ctime>
-#include <mach/mach_host.h>
-#include <mach/processor_info.h>
-#include <fstream>
+#ifndef OS_HPP
+# define OS_HPP
 
-class IMonitorModule
+#include "IMonitorModule.hpp"
+
+class OS
 {
+	std::string _name;
+	std::string _version;
 public:
-	virtual ~IMonitorModule(){};
-	virtual void getInfo() = 0;
+	OS();
+	~OS();
+	virtual void getInfo();
+	std::string getName();
+	std::string getVersion();
 };
 
 #endif
