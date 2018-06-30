@@ -6,7 +6,7 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:04:35 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 21:23:19 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/06/30 21:23:45 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class CPU : public IMonitorModule, public IMonitorDisplay {
 public:
 	CPU();
 	~CPU();
-	void getInfo();
-	void display();
+	virtual void getInfo();
+	virtual void display();
 	std::string getCpuName();
 	std::string getCores();
 	double getUserCpu();

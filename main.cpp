@@ -5,33 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/30 12:41:10 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 21:32:17 by vmazurok         ###   ########.fr       */
+/*   Created: 2018/06/30 21:52:58 by vmazurok          #+#    #+#             */
+/*   Updated: 2018/06/30 21:56:54 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "IMonitorDisplay.hpp"
 #include "IMonitorModule.hpp"
 #include "Hostname.hpp"
-//#include "OS.hpp"
+#include "OS.hpp"
 #include "CPU.hpp"
 #include "RAM.hpp"
-//#include "DateTime.hpp"
+#include "DateTime.hpp"
+#include <locale>
 
 int	main(){
+	setlocale(LC_ALL, "");
 	initscr();
 	noecho();
 	nodelay(stdscr, TRUE);
 	curs_set(0);
+	start_color();
+	init_pair(1, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(2, COLOR_GREEN, COLOR_BLACK);
+	init_pair(3, COLOR_RED, COLOR_BLACK);
 	Hostname host;
-//	OS os;
+	OS os;
 	CPU cpu;
 	RAM ram;
-//	DateTime time;
+	DateTime time;
 	while (getch() != 27) {
 		host.display();
 		ram.display();
 		cpu.display();
+		os.display();
+		time.display();
 	}
 	endwin();
 //	os.getInfo();

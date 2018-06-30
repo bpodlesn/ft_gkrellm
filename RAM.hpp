@@ -6,7 +6,7 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:08:47 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 20:53:48 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/06/30 21:01:00 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ class RAM : public IMonitorModule, public IMonitorDisplay{
 public:
 	RAM();
 	~RAM();
-	void getInfo();
-	void display();
+	virtual void getInfo();
+	virtual void display();
 	int getRamUsed();
 	int getRamFree();
 };
