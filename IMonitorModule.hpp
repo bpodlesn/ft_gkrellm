@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 12:34:26 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 16:01:00 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/06/30 19:28:10 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 class IMonitorModule
 {
+private:
+
 public:
 	virtual ~IMonitorModule(){};
 	virtual void getInfo() = 0;
