@@ -12,7 +12,7 @@
 
 NAME = ft_sraka
 SRC = CPU.cpp DateTime.cpp Hostname.cpp OS.cpp RAM.cpp main.cpp Network.cpp GPU.cpp \
-Bluetooth.cpp
+Bluetooth.cpp Graph.cpp
 SDL2_F	= -F frameworks/ \
 	-framework SDL2 -framework SDL2_image -framework SDL2_ttf
 SDL2_P	= -rpath frameworks/

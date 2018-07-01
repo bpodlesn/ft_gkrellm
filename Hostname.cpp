@@ -12,11 +12,18 @@
 
 #include "Hostname.hpp"
 
-Hostname::Hostname(){
+Hostname::Hostname(SDL_Renderer *rend){
+	newrend = rend;
 	_mode = 0;
 	_win = newwin(5, 30, 0, 0);
 	_width = 30;
 	_height = 5;
+	textColor.r = 0; textColor.g =255; textColor.b = 255; textColor.a = 255;
+	font = TTF_OpenFont("test.ttf", 11);
+	hostRect.x = 200;hostRect.y = 495;
+	userRect.x = 445;userRect.y = 495;
+	hostSurface = nullptr;
+	userSurface = nullptr;
 	getInfo();
 }
 
@@ -43,14 +50,16 @@ std::string Hostname::getUser(){
 	return this->_user;
 }
 
-//Hostname::Hostname(bool mode): _mode(mode){
-//	if (_mode == NCURSES) {
-//		_win = newwin(0, 0, 5, 20);
-//	}
-//}
-
 void Hostname::display() {
 	setlocale(LC_ALL, "");
+	SDL_QueryTexture(host, NULL, NULL, &hostRect.w, &hostRect.h);
+	SDL_QueryTexture(usertext, NULL, NULL, &userRect.w, &userRect.h);
+	SDL_FreeSurface(hostSurface);
+	SDL_FreeSurface(userSurface);
+	hostSurface = TTF_RenderText_Solid(font, _host.c_str(), textColor);
+	userSurface = TTF_RenderText_Solid(font, _user.c_str(), textColor);
+	host = SDL_CreateTextureFromSurface(newrend, hostSurface);
+	usertext = SDL_CreateTextureFromSurface(newrend, userSurface);
 	for (int i = 0; i < _height; i++) {
 		for (int j = 0; j < _width; j++) {
 			if ((i == 0 && j == 0) || (i == _height - 1 && j == _width - 1))
@@ -64,6 +73,8 @@ void Hostname::display() {
 			wrefresh(_win);
 		}
 	}
+	SDL_RenderCopy(newrend, host, NULL, &hostRect);
+	SDL_RenderCopy(newrend, usertext, NULL, &userRect);
 	wattron(_win, COLOR_PAIR(1));
 	mvwaddstr(_win, 1, 2, "     Host/user module");
 	wattroff(_win, COLOR_PAIR(1));

@@ -84,7 +84,7 @@ TTF_Init();
 // SDL_Rect renderQuad = { 20, 30, 0, 0 };
 	// SDL
 
-	Hostname host;
+	Hostname host(rend);
 	OS os(rend);
 	CPU cpu(rend);
 	RAM ram;
