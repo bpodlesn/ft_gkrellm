@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   OS.cpp                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:02:20 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 21:39:13 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 12:11:25 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,19 @@ OS::OS(){
 OS::~OS(){};
 
 void OS::getInfo(){
-	char str[256];
-	size_t size = sizeof(str);
-	int ret;
-	ret = sysctlbyname("kern.osproductversion", str, &size, NULL, 0);
-	if (str[4] == '3'){
-		this->_name = "macOS High Siera";
-	} else if (str[4] == '2'){
-		this->_name = "macOS Siera";
-	} else if (str[4] == '1'){
-		this->_name = "OS X El Capitan";
-	}
-	this->_version = str;
+	int i = 0;
+	char line[256];
+	FILE *sw_vers = popen("sw_vers", "r");
+	fgets(line, sizeof(line), sw_vers);
+	while (line[i] && line[i] != '\t')
+		i++;
+	this->_name = line + i + 1;
+	i = 0;
+	fgets(line, sizeof(line), sw_vers);
+	while (line[i] && line[i] != '\t')
+		i++;
+	this->_version = line + i + 1;
+	pclose(sw_vers);
 }
 
 std::string OS::getName(){

@@ -6,7 +6,7 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 21:52:58 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/06/30 21:56:54 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 11:22:48 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ int	main(){
 	init_pair(1, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(2, COLOR_GREEN, COLOR_BLACK);
 	init_pair(3, COLOR_RED, COLOR_BLACK);
+	init_pair(4, COLOR_GREEN, COLOR_GREEN);
+	init_pair(5, COLOR_RED, COLOR_RED);
+	init_pair(6, COLOR_BLUE, COLOR_BLACK);
+	init_pair(7, COLOR_BLUE, COLOR_BLUE);
 	Hostname host;
 	OS os;
 	CPU cpu;
