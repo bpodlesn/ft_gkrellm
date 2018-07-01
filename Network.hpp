@@ -6,13 +6,12 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:26:52 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 16:45:55 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 20:55:30 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef NETWORK_HPP
 # define NETWORK_HPP
-
 
 #include "IMonitorDisplay.hpp"
 #include "IMonitorModule.hpp"

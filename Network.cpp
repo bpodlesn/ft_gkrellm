@@ -6,7 +6,7 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:42:23 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 18:17:12 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 20:51:34 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,57 +65,45 @@ void Network::display() {
 	mvwaddstr(_win, 3, 15, _pocketsOut.c_str());
 	int i;
 	if (f < 2 || (f > 4 && f < 6)) {
-		i = 4;
-		mvwaddstr(_win, i++, 3, "                        ");
-		mvwaddstr(_win, i++, 3, "                        ");
-		mvwaddstr(_win, i++, 3, "  yo+:-------------+oy  ");
-		mvwaddstr(_win, i++, 3, "  + `::.        -::  +  ");
-		mvwaddstr(_win, i++, 3, "  +    .::`  .::`    +  ");
-		mvwaddstr(_win, i++, 3, "  +    `::::::::`    +  ");
-		mvwaddstr(_win, i++, 3, "  + `::.        -::` +  ");
-		mvwaddstr(_win, i++, 3, "  yo+--------------+oy  ");
-		mvwaddstr(_win, i++, 3, "                        ");
-		mvwaddstr(_win, i++, 3, "                        ");
+		i = 6;
+		mvwaddstr(_win, i++, 7, "   |\\_._/|  ");
+		mvwaddstr(_win, i++, 7, "   | o o |   ");
+		mvwaddstr(_win, i++, 7, "   (  T  )   ");
+		mvwaddstr(_win, i++, 7, "  .^`-^-'^.  ");
+		mvwaddstr(_win, i++, 7, "  `.  ;  .'  ");
+		mvwaddstr(_win, i++, 7, "  | | | | |  ");
+		mvwaddstr(_win, i++, 7, " ((_((|))_)) ");
 	}
 	else if (f < 4) {
-		i = 4;
-		mvwaddstr(_win, i++, 1, "                              ");
-		mvwaddstr(_win, i++, 1, "                `--o+:        ");
-		mvwaddstr(_win, i++, 1, "           ``---- -- -:       ");
-		mvwaddstr(_win, i++, 1, "       ``-:-.    --   .:      ");
-		mvwaddstr(_win, i++, 1, "    -//-.       ::     ./     ");
-		mvwaddstr(_win, i++, 1, "    o-.-----.-.:/-----..-o    ");
-		mvwaddstr(_win, i++, 1, "    `/.     ::`.     .-::-    ");
-		mvwaddstr(_win, i++, 1, "      /.   :-    .---``       ");
-		mvwaddstr(_win, i++, 1, "       :- :- .---``           ");
-		mvwaddstr(_win, i++, 1, "        :o+--`                ");
+		i = 6;
+		mvwaddstr(_win, i++, 7, "   |,\\__/|   ");
+		mvwaddstr(_win, i++, 7, "   |  o o|    ");
+		mvwaddstr(_win, i++, 7, "   (   T )    ");
+		mvwaddstr(_win, i++, 7, "  .^`--^'^.   ");
+		mvwaddstr(_win, i++, 7, "  `.  ;  .'   ");
+		mvwaddstr(_win, i++, 7, "  | | | | |   ");
+		mvwaddstr(_win, i++, 7, " ((_((|))_))  ");
 	}
 	else if (f < 8) {
-		i = 4;
-		mvwaddstr(_win, i++, 1, "                              ");
-		mvwaddstr(_win, i++, 1, "        +s::-`                ");
-		mvwaddstr(_win, i++, 1, "      `+``+``--:-``           ");
-		mvwaddstr(_win, i++, 1, "     `/`   /`    .---.``      ");
-		mvwaddstr(_win, i++, 1, "    `/`     /.       .:://    ");
-		mvwaddstr(_win, i++, 1, "    o-...----/-.-----...-+    ");
-		mvwaddstr(_win, i++, 1, "    /::-`     .`::     `/`    ");
-		mvwaddstr(_win, i++, 1, "      ``.--..    ./   `/`     ");
-		mvwaddstr(_win, i++, 1, "           ``----``/ `+`      ");
-		mvwaddstr(_win, i++, 1, "                `--:s+        ");
+		i = 6;
+		mvwaddstr(_win, i++, 7, "   |\\__/,|  ");
+		mvwaddstr(_win, i++, 7, "   |o o  |   ");
+		mvwaddstr(_win, i++, 7, "   ( T   )   ");
+		mvwaddstr(_win, i++, 7, "  .^`--^'^.   ");
+		mvwaddstr(_win, i++, 7, "  `.  ;  .'   ");
+		mvwaddstr(_win, i++, 7, "  | | | | |   ");
+		mvwaddstr(_win, i++, 7, " ((_((|))_))  ");
 	}
 	else {
 		f = -1;
-		i = 4;
-		mvwaddstr(_win, i++, 3, "                        ");
-		mvwaddstr(_win, i++, 3, "                        ");
-		mvwaddstr(_win, i++, 3, "  yo+:-------------+oy  ");
-		mvwaddstr(_win, i++, 3, "  + `::.        -::  +  ");
-		mvwaddstr(_win, i++, 3, "  +    .::`  .::`    +  ");
-		mvwaddstr(_win, i++, 3, "  +    `::::::::`    +  ");
-		mvwaddstr(_win, i++, 3, "  + `::.        -::` +  ");
-		mvwaddstr(_win, i++, 3, "  yo+--------------+oy  ");
-		mvwaddstr(_win, i++, 3, "                        ");
-		mvwaddstr(_win, i++, 3, "                        ");
+		i = 6;
+		mvwaddstr(_win, i++, 7, "   |\\_._/|  ");
+		mvwaddstr(_win, i++, 7, "   | 0 0 |   ");
+		mvwaddstr(_win, i++, 7, "   (  T  )   ");
+		mvwaddstr(_win, i++, 7, "  .^`-^-'^.  ");
+		mvwaddstr(_win, i++, 7, "  `.  ;  .'  ");
+		mvwaddstr(_win, i++, 7, "  | | | | |  ");
+		mvwaddstr(_win, i++, 7, " ((_((|))_)) ");
 	}
 	f++;
 }
