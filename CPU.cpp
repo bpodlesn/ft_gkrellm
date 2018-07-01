@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CPU.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 19:52:01 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 19:52:01 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 19:58:17 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ void CPU::display() {
 	SDL_RenderCopy(newrend, frametext2, &frame_s, &frame_d);
 	frame_d.x = 250; frame_d.y = 10;
 	SDL_RenderCopy(newrend, frametext3, &frame_s, &frame_d);
-		CPUColor.r = 255; CPUColor.g = 255; CPUColor.b = 255; CPUColor.a = 255;
+	CPUColor.r = 255; CPUColor.g = 255; CPUColor.b = 255; CPUColor.a = 255;
 	names = TTF_RenderText_Solid(font, "User", CPUColor);
 	namestext = SDL_CreateTextureFromSurface(newrend, names);
 	CPURect.x = 70; CPURect.y = 10;

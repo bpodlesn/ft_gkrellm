@@ -3,25 +3,83 @@
 /*                                                        :::      ::::::::   */
 /*   RAM.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:09:36 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/07/01 16:15:40 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 20:35:52 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sstream>
 #include "RAM.hpp"
 
-RAM::RAM(){
+RAM::RAM(SDL_Renderer *rend){
+	newrend = rend;
 	_mode = 0;
 	_width = 30;
 	_height = 15;
 	_win = newwin(_height, _width, 6, 0);
+	font = TTF_OpenFont("test.ttf", 13);
+	frame_s.w = 800;
+	frame_s.h = 519;
+	frame_d.w = 120;
+	frame_d.h = 120;
+	usedSurface = nullptr;
+	textColor.r = 0; textColor.g =255; textColor.b = 255; textColor.a = 255;
+	for (int i = 0; i < 10; i++) {
+		this->graph[i] = new Graph(100, 290, 20);
+		this->graph2[i] = new Graph(220, 290, 140);
+	}
+	frame = IMG_Load("img/frame.png");
+	frametext = SDL_CreateTextureFromSurface(newrend, frame);
+	frametext2 = SDL_CreateTextureFromSurface(newrend, frame);
 }
 
 RAM::~RAM(){
 	delwin(_win);
+}
+
+void	RAM::creategraph(int y, int x, int data){
+	int newy = y - data;
+	if (data < 30){
+		// CPUColor.r = 0; CPUColor.g =255; CPUColor.b = 0; CPUColor.a = 255;
+		SDL_SetRenderDrawColor(newrend, 0, 0xff, 0, 0xFF);
+	}
+	else if (data < 60){
+		// CPUColor.r = 255; CPUColor.g =255; CPUColor.b = 0; CPUColor.a = 255;
+		SDL_SetRenderDrawColor(newrend, 0xff, 0xff, 0, 0xFF);
+	}
+	else if (data <= 100){
+		// CPUColor.r = 255; CPUColor.g = 0; CPUColor.b = 0; CPUColor.a = 255;
+		SDL_SetRenderDrawColor(newrend, 0xFF, 0, 0, 0xFF);
+	}
+	int yy = y;
+	for (int newx = x; newx < x + 10; newx++){
+		y = yy;
+		for (; y > newy; y--){
+				SDL_RenderDrawPoint(newrend, newx, y);
+		}
+	}
+}
+
+void	RAM::draw_graph(Graph **gr, int k){
+	for (int i = 0; i < 10; i++){
+		if (gr[i]->getVisible() == false){
+			for (int i = 0; i < 10; i++){
+				if (gr[i]->getVisible() == true){
+					gr[i]->setposX(gr[i]->getposX() - 10);
+					creategraph(gr[i]->getposY(), gr[i]->getposX(), gr[i]->getData());
+				}
+			}
+			gr[i]->setVisible(true);
+			if (k == 0)
+				gr[i]->setData(this->_ramused / 100);
+			else if(k == 1)
+				gr[i]->setData(this->_ramfree / 100);
+			creategraph(gr[i]->getposY(), gr[i]->getposX(), gr[i]->getData());
+			break;
+		}
+	}
 }
 
 void RAM::getInfo(){
@@ -44,7 +102,31 @@ int	RAM::getRamFree(){
 	return this->_ramfree;
 }
 
+void RAM::setUsed(int u){
+	this->_ramused = u;
+}
+
+void RAM::setFree(int f){
+	this->_ramfree = f;
+}
+
 void RAM::display() {
+	SDL_QueryTexture(usedtext, NULL, NULL, &dayRect.w, &dayRect.h);
+	SDL_FreeSurface(usedSurface);
+
+	dayRect.x = 50;dayRect.y = 300;
+	textColor.r = 0; textColor.g =255; textColor.b = 255; textColor.a = 255;
+	std::string newstr = std::to_string(_ramused);
+	usedSurface = TTF_RenderText_Solid(font, newstr.c_str(), textColor);
+	usedtext = SDL_CreateTextureFromSurface(newrend, usedSurface);
+	SDL_RenderCopy(newrend, usedtext, NULL, &dayRect);
+	dayRect.x = 180;dayRect.y = 300;
+	newstr = std::to_string(_ramfree);
+	usedSurface = TTF_RenderText_Solid(font, newstr.c_str(), textColor);
+	usedtext = SDL_CreateTextureFromSurface(newrend, usedSurface);
+	SDL_RenderCopy(newrend, usedtext, NULL, &dayRect);
+	dayRect.x = 50;dayRect.y = 180;
+	newstr = std::to_string(_ramfree);
 	std::stringstream s1;
 	std::stringstream s2;
 	setlocale(LC_ALL, "");
@@ -60,6 +142,22 @@ void RAM::display() {
 				mvwaddstr(_win, i, j, "|");
 		}
 	}
+	draw_graph(this->graph, 0);
+	draw_graph(this->graph2, 1);
+	frame_d.x = 10;	frame_d.y = 180;
+	SDL_RenderCopy(newrend, frametext, &frame_s, &frame_d);
+	frame_d.x = 130;	frame_d.y = 180;
+	SDL_RenderCopy(newrend, frametext2, &frame_s, &frame_d);
+	dayRect.x = 60;dayRect.y = 180;
+	textColor.r = 255; textColor.g =255; textColor.b = 255; textColor.a = 255;
+	usedSurface = TTF_RenderText_Solid(font, "Used", textColor);
+	usedtext = SDL_CreateTextureFromSurface(newrend, usedSurface);
+	SDL_RenderCopy(newrend, usedtext, NULL, &dayRect);
+	dayRect.x = 180;dayRect.y = 180;
+	newstr = std::to_string(_ramfree);
+	usedSurface = TTF_RenderText_Solid(font, "Free", textColor);
+	usedtext = SDL_CreateTextureFromSurface(newrend, usedSurface);
+	SDL_RenderCopy(newrend, usedtext, NULL, &dayRect);
 	getInfo();
 	wrefresh(_win);
 	wattron(_win, COLOR_PAIR(1));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 16:35:10 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 19:47:27 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 20:03:16 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ TTF_Init();
 	Hostname host(rend);
 	OS os(rend);
 	CPU cpu(rend);
-	RAM ram;
+	RAM ram(rend);
 	Network n;
 	DateTime time(rend);
 	GPU gpu;
