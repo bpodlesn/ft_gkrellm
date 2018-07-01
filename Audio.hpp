@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bluetooth.hpp                                      :+:      :+:    :+:   */
+/*   Audio.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/01 20:41:42 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/07/01 20:41:46 by bpodlesn         ###   ########.fr       */
+/*   Created: 2018/07/01 20:03:15 by vmazurok          #+#    #+#             */
+/*   Updated: 2018/07/01 20:13:33 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BLUETOOTH_HPP
-#define BLUETOOTH_HPP
+#ifndef AUDIO_HPP
+#define AUDIO_HPP
 
 
 #include "IMonitorDisplay.hpp"
 #include "IMonitorModule.hpp"
 
-class Bluetooth : public IMonitorModule, public IMonitorDisplay {
-	std::string _version;
-	std::string _addr;
-	std::string _chip;
+class Audio : public IMonitorModule, public IMonitorDisplay  {
+	std::string _man;
+	std::string _microSample;
+	std::string _audioSample;
 public:
-	Bluetooth();
-	virtual ~Bluetooth();
-	void display();
+	Audio();
 	void getInfo();
+	void display();
+	virtual ~Audio();
 };
 
 

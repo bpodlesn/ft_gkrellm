@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 16:35:10 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 20:03:16 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 20:41:01 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "Network.hpp"
 #include "GPU.hpp"
 #include "Bluetooth.hpp"
+#include "Audio.hpp"
 #include <locale>
 
 bool	key(SDL_Event event){
@@ -92,6 +93,7 @@ TTF_Init();
 	DateTime time(rend);
 	GPU gpu;
 	Bluetooth bl;
+	Audio audio;
 	SDL_SetRenderDrawColor(rend, 0xff, 0, 0, 0xFF);
 	while (done != false && getch() != 27) {
 		SDL_RenderClear(rend);
@@ -104,6 +106,7 @@ TTF_Init();
 		n.display();
 		gpu.display();
 		bl.display();
+		audio.display();
 		SDL_RenderPresent(rend);
 		done = key(event);
 	}
