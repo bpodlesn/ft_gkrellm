@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CPU.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:04:35 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/07/01 19:43:39 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 20:57:05 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ class CPU : public IMonitorModule, public IMonitorDisplay {
 public:
 	CPU(){};
 	CPU(SDL_Renderer *rend);
+	CPU(CPU const & cpy);
+	CPU &operator=(CPU const & cpy);
 	~CPU();
 	virtual void getInfo();
 	virtual void display();

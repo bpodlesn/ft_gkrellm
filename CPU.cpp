@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CPU.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 19:52:01 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 20:41:25 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 21:18:07 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,4 +267,46 @@ void CPU::display() {
 		mvwaddstr(_win, k, 20, "        ");
 	}
 	getInfo();
+}
+
+CPU::CPU(CPU const &cpy) {
+	*this = cpy;
+}
+
+CPU &CPU::operator=(CPU const &cpy) {
+	_win = cpy._win;
+	_height = cpy._height;
+	_width = cpy._width;
+	_mode = cpy._mode;
+	_cpuName = cpy._cpuName;
+	_cores = cpy._cores;
+	_usercpu = cpy._usercpu;
+	_syscpu = cpy._syscpu;
+	_idle = cpy._idle;
+	this->font = cpy.font;
+	this->textColor = cpy.textColor;
+	this->CPUColor = cpy.CPUColor;
+	this->CPURect = cpy.CPURect;
+	this->userSurface = cpy.userSurface;
+	this->sysSurface = cpy.sysSurface;
+	this->idleSurface = cpy.idleSurface;
+	this->usertext = cpy.usertext;
+	this->systext = cpy.systext;
+	this->idletext = cpy.idletext;
+	this->textSurface = cpy.textSurface;
+	this->text = cpy.text;
+	this->coreSurface = cpy.coreSurface;
+	this->frame = cpy.frame;
+	this->coretext = cpy.coretext;
+	this->names = cpy.names;
+	this->namestext = cpy.namestext;
+	this->frametext = cpy.frametext;
+	this->frametext2 = cpy.frametext2;
+	this->frametext3 = cpy.frametext3;
+	this->newrend = cpy.newrend;
+	this->textRect = cpy.textRect;
+	this->coreRect = cpy.coreRect;
+	this->frame_s = cpy.frame_s;
+	this->frame_d = cpy.frame_d;
+	return *this;
 }

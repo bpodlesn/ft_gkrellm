@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DateTime.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:12:11 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/07/01 16:10:16 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 21:07:58 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ public:
 	DateTime(){};
 	DateTime(SDL_Renderer *rend);
 	~DateTime();
+	DateTime(DateTime const & cpy);
+	DateTime &operator=(DateTime const & cpy);
 	virtual void getInfo();
 	virtual void display();
-	std::string getYear();
-	std::string getMonth();
 	std::string getDay();
 	std::string getTime();
 };

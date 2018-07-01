@@ -23,9 +23,12 @@ class Bluetooth : public IMonitorModule, public IMonitorDisplay {
 	std::string _chip;
 public:
 	Bluetooth();
+	Bluetooth(Bluetooth const & cpy);
 	virtual ~Bluetooth();
 	void display();
 	void getInfo();
+	Bluetooth &operator=(Bluetooth const & cpy);
+
 };
 
 

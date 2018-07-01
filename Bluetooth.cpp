@@ -58,3 +58,18 @@ void Bluetooth::getInfo() {
 	in.close();
 	system("rm newinfo");
 }
+
+Bluetooth::Bluetooth(Bluetooth const &cpy) {
+
+}
+
+Bluetooth &Bluetooth::operator=(Bluetooth const &cpy) {
+	_win = cpy._win;
+	_chip = cpy._chip;
+	_addr = cpy._addr;
+	_version = cpy._version;
+	_height = cpy._height;
+	_width = cpy._width;
+	_mode = cpy._mode;
+	return <#initializer#>;
+}

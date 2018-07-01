@@ -6,7 +6,7 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 16:36:11 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 18:13:51 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 21:11:21 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,27 @@ void DateTime::display(){
 	SDL_RenderCopy(newrend, daytext, NULL, &dayRect);
 	SDL_RenderCopy(newrend, timetext, NULL, &timeRect);
 	getInfo();
+}
+
+DateTime::DateTime(DateTime const &cpy) {
+	*this = cpy;
+}
+
+DateTime &DateTime::operator=(DateTime const &cpy) {
+	_win = cpy._win;
+	_height = cpy._height;
+	_width = cpy._width;
+	_mode = cpy._mode;
+	_day = cpy._day;
+	_time = cpy._time;
+	this->font = cpy.font;
+	this->textColor = cpy.textColor;
+	this->daySurface = cpy.daySurface;
+	this->daytext = cpy.daytext;
+	this->timeSurface = cpy.timeSurface;
+	this->timetext = cpy.timetext;
+	this->newrend = cpy.newrend;
+	this->dayRect = cpy.dayRect;
+	this->timeRect = cpy.timeRect;
+	return *this;
 }
