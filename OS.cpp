@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 16:35:24 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 20:18:43 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 20:47:22 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ OS::OS(SDL_Renderer	*rend){
 	textRect.x = 220;textRect.y = 460;
 	versRect.x = 400;versRect.y = 460;
 	textSurface = nullptr;
+
 };
 OS::~OS(){};
 

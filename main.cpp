@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 16:35:10 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 20:41:01 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 20:50:52 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ int	main(){
 	SDL_Renderer	*rend;
 	SDL_Event		event;
 	SDL_Surface		*hud;
-	// SDL_Rect		shud;
-	// SDL_Rect		dhud;
 	SDL_Texture		*texhud;
 	bool done = true;
 
@@ -71,25 +69,14 @@ int	main(){
 	rend = SDL_CreateRenderer(win, -1, render_flags);
 	hud = IMG_Load("img/hud.png");
 	texhud = SDL_CreateTextureFromSurface(rend, hud);
-	//text
-	// int w = 0, h = 0;
 
 TTF_Init();
-	// if (font == NULL)
-	// 	return (0);
-	// // if (TTF_Init() == 0)
-	// // 	done = false;
-	// // 	exit(0);
-	// 
-	
-// SDL_Rect renderQuad = { 20, 30, 0, 0 };
-	// SDL
 
 	Hostname host(rend);
 	OS os(rend);
 	CPU cpu(rend);
 	RAM ram(rend);
-	Network n;
+	Network n(rend);
 	DateTime time(rend);
 	GPU gpu;
 	Bluetooth bl;

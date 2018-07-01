@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Network.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:26:52 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 16:45:55 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 20:50:46 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,15 @@
 class Network : public IMonitorModule, public IMonitorDisplay  {
 	std::string _pocketsIn;
 	std::string _pocketsOut;
+	TTF_Font *font;
+	SDL_Surface* usedSurface;
+	SDL_Texture* usedtext;
+	SDL_Rect 	dayRect;
+	SDL_Color textColor;
+	SDL_Renderer	*newrend;
 public:
-	Network();
+	Network(){};
+	Network(SDL_Renderer	*newrend);
 	Network(Network const & cpy);
 	virtual ~Network();
 	virtual void getInfo();
