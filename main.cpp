@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:47:11 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/07/01 16:04:42 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 16:38:59 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ TTF_Init();
 // SDL_Rect renderQuad = { 20, 30, 0, 0 };
 	// SDL
 
-	Hostname host;
+	Hostname host(rend);
 	OS os(rend);
 	CPU cpu(rend);
 	RAM ram;
