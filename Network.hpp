@@ -6,7 +6,7 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:26:52 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 12:31:01 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 12:41:45 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,13 @@
 #include "IMonitorModule.hpp"
 
 class Network : public IMonitorModule, public IMonitorDisplay  {
-	std::string _
+	std::string _pocketsIn;
+	std::string _pocketsOut;
+public:
+	Network();
+	virtual ~Network();
+	virtual void getInfo();
+	virtual void display();
 };
 
 

@@ -6,7 +6,7 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:09:36 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/07/01 11:51:03 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 16:15:40 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ RAM::~RAM(){
 
 void RAM::getInfo(){
 	std::string line;
-	system("top -l 1 | grep -E '^PhysMem:' &> newinfo");
+	system("top -n 0 -l 1 | grep -E '^PhysMem:' &> newinfo");
 	std::ifstream ram_usage ("newinfo");
 	getline(ram_usage, line, ' ');
 	getline(ram_usage, line, 'M');
@@ -61,6 +61,7 @@ void RAM::display() {
 		}
 	}
 	getInfo();
+	wrefresh(_win);
 	wattron(_win, COLOR_PAIR(1));
 	mvwaddstr(_win, 1, 2, "        RAM module");
 	wattroff(_win, COLOR_PAIR(1));
@@ -74,6 +75,9 @@ void RAM::display() {
 	s2 << _ramfree << "MB";
 	mvwaddstr(_win, 3, 11, s2.str().c_str());
 	wattroff(_win, COLOR_PAIR(3));
+	for (int k = 4; k < 13; k++) {
+		mvwaddstr(_win, k, 4, "                      ");
+	}
 	wattron(_win, COLOR_PAIR(4));
 	for (int k = 0; k < (_ramused * 10 / 8192); k++) {
 		mvwaddstr(_win, 13 - k, 4, "          ");
@@ -85,5 +89,4 @@ void RAM::display() {
 	}
 	mvwaddstr(_win, 13, 16, "          ");
 	wattroff(_win, COLOR_PAIR(5));
-	wrefresh(_win);
 }

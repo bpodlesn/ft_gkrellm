@@ -1,5 +1,23 @@
-NAME = ft_sraka
-SRC = CPU.cpp DateTime.cpp Hostname.cpp OS.cpp RAM.cpp main.cpp
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/07/01 13:37:15 by vmazurok          #+#    #+#              #
+#    Updated: 2018/07/01 13:38:23 by vmazurok         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME	=	ft_sraka
+SRC		=	CPU.cpp \
+			DateTime.cpp \
+			Hostname.cpp \
+			OS.cpp \
+			RAM.cpp \
+			Network.cpp \
+			main.cpp
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 OBJ_DIR = objects
 CC = clang++

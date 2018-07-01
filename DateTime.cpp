@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DateTime.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:12:40 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 21:43:52 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 16:29:25 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 DateTime::DateTime(){
 	_mode = 0;
-	_win = newwin(5, 23, 0, 60);
+	_win = newwin(5, 23, 0, 68);
 	_width = 23;
 	_height = 5;
 	getInfo();
@@ -46,23 +46,25 @@ std::string DateTime::getTime(){
 
 void DateTime::display(){
 	setlocale(LC_ALL, "");
-	for (int i = 0; i < _height; i++) {
-		for (int j = 0; j < _width; j++) {
-//			if (i == 0 && j == 0)
-//				mvwaddstr(_win, i, j, "+");
-//			if (i == 4 && j == 0)
-//				mvwaddstr(_win, i, j, "+");
-//			if (i == 4 && j == 19)
-//				mvwaddstr(_win, i, j, "+");
-//			if (i == 0 && j == 19)
-//				mvwaddstr(_win, i, j, "+");
-			if (i == 0 || i == _height - 1)
-				mvwaddstr(_win, i, j, "-");
-			else if (j == 0 || j == _width - 1)
-				mvwaddstr(_win, i, j, "|");
-			wrefresh(_win);
-		}
-	}
+	box(_win, '|', '-');
+//	for (int i = 0; i < _height; i++) {
+//		for (int j = 0; j < _width; j++) {
+////			if (i == 0 && j == 0)
+////				mvwaddstr(_win, i, j, "+");
+////			if (i == 4 && j == 0)
+////				mvwaddstr(_win, i, j, "+");
+////			if (i == 4 && j == 19)
+////				mvwaddstr(_win, i, j, "+");
+////			if (i == 0 && j == 19)
+////				mvwaddstr(_win, i, j, "+");
+//			if (i == 0 || i == _height - 1)
+//				mvwaddstr(_win, i, j, "-");
+//			else if (j == 0 || j == _width - 1)
+//				mvwaddstr(_win, i, j, "|");
+//			wrefresh(_win);
+//		}
+//	}
+	wrefresh(_win);
 	wattron(_win, COLOR_PAIR(2));
 	mvwaddstr(_win, 1, 10, "Time");
 	mvwaddstr(_win, 1, 1, "🕚");

@@ -13,6 +13,7 @@
 #ifndef IMONITORMODULE_HPP
 # define IMONITORMODULE_HPP
 #include <iostream>
+#include <sstream>
 #include <limits.h>
 #include <stdio.h>
 #include <unistd.h>

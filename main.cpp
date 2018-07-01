@@ -6,7 +6,7 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 21:52:58 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 11:22:48 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 14:20:07 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "CPU.hpp"
 #include "RAM.hpp"
 #include "DateTime.hpp"
+#include "Network.hpp"
 #include <locale>
 
 int	main(){
@@ -39,36 +40,16 @@ int	main(){
 	CPU cpu;
 	RAM ram;
 	DateTime time;
+	Network n;
 	while (getch() != 27) {
 		host.display();
 		ram.display();
 		cpu.display();
 		os.display();
 		time.display();
+		n.display();
 	}
 	endwin();
-//	os.getInfo();
-//	cpu.getInfo();
-//	ram.getInfo();
-//	time.getInfo();
-
-	//hostname and username
-
-	//version
-	// 
-
-
-	// 
-
-
-	// // current date/time based on current system
- //    CpuUsage a(0), b(1), c(2), d(3);
- //    sleep(1);
- //  std::cout << (a.get() +  b.get() + c.get() + d.get()) / 4 << std::endl;
- //  sleep(1);
- //  std::cout << (a.get() +  b.get() + c.get() + d.get()) / 4 << std::endl;
- //  sleep(1);
- //  std::cout << (a.get() +  b.get() + c.get() + d.get()) / 4<< std::endl;
- //  return 0;
+	return 0;
 
 }
