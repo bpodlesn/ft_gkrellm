@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RAM.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:09:36 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/07/01 20:35:52 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 21:54:51 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,4 +188,32 @@ void RAM::display() {
 	}
 	mvwaddstr(_win, 13, 16, "          ");
 	wattroff(_win, COLOR_PAIR(5));
+}
+
+RAM::RAM(RAM const &cpy) {
+	*this = cpy;
+}
+
+RAM &RAM::operator=(RAM const &cpy) {
+	_win = cpy._win;
+	_height = cpy._height;
+	_width = cpy._width;
+	_mode = cpy._mode;
+	this->font = cpy.font;
+	this->textColor = cpy.textColor;
+	this->frame = cpy.frame;
+	this->frametext = cpy.frametext;
+	this->frametext2 = cpy.frametext2;
+	this->newrend = cpy.newrend;
+	this->frame_s = cpy.frame_s;
+	this->frame_d = cpy.frame_d;
+	this->usedtext = cpy.usedtext;
+	this->dayRect = cpy.dayRect;
+	for (int i = 0; i < 10; ++i) {
+		graph[i] = cpy.graph[i];
+	}
+	for (int i = 0; i < 10; ++i) {
+		graph2[i] = cpy.graph2[i];
+	}
+	return *this;
 }

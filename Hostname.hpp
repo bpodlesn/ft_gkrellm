@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Hostname.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 15:48:27 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/07/01 16:39:21 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 21:43:29 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ public:
 	void display();
 	std::string getHost();
 	std::string getUser();
+	Hostname(Hostname const & cpy);
+	Hostname &operator=(Hostname const & cpy);
 };
 
 #endif

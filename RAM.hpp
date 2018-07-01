@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RAM.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:08:47 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/07/01 20:21:55 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 21:50:42 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ public:
 	void setFree(int f);
 	void creategraph(int y, int x, int data);
 	void draw_graph(Graph **gr, int k);
+	RAM(RAM const & cpy);
+	RAM &operator=(RAM const & cpy);
 };
 
 #endif

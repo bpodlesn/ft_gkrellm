@@ -6,7 +6,7 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 19:52:01 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 21:18:07 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 21:54:17 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,5 +308,14 @@ CPU &CPU::operator=(CPU const &cpy) {
 	this->coreRect = cpy.coreRect;
 	this->frame_s = cpy.frame_s;
 	this->frame_d = cpy.frame_d;
+	for (int i = 0; i < 10; ++i) {
+		graph[i] = cpy.graph[i];
+	}
+	for (int i = 0; i < 10; ++i) {
+		graph2[i] = cpy.graph2[i];
+	}
+	for (int i = 0; i < 10; ++i) {
+		graph3[i] = cpy.graph3[i];
+	}
 	return *this;
 }

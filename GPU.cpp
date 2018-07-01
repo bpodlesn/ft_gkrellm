@@ -6,17 +6,20 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 18:22:41 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 19:25:48 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 21:42:30 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "GPU.hpp"
 
-GPU::GPU() {
+GPU::GPU(SDL_Renderer *rend) {
+	newrend = rend;
 	_mode = NCURSES;
 	_width = 30;
 	_height = 6;
 	_win = newwin(_height, _width, 22, _width + 3);
+	font = TTF_OpenFont("test.ttf", 13);
+	dayRect.w = 0; dayRect.h = 0;
 	getInfo();
 }
 
@@ -64,4 +67,19 @@ void GPU::display() {
 	mvwaddstr(_win, 3, 15, _VRAM.c_str());
 	mvwaddstr(_win, 4, 2, "Driver version: ");
 	mvwaddstr(_win, 4, 19, _driver.c_str());
+}
+
+GPU::GPU(GPU const &cpy) {
+	*this = cpy;
+}
+
+GPU& GPU::operator=(GPU const &cpy) {
+	_win = cpy._win;
+	_height = cpy._height;
+	_width = cpy._width;
+	_mode = cpy._mode;
+	_name = cpy._name;
+	_driver = cpy._driver;
+	_VRAM = cpy._VRAM;
+	return *this;
 }

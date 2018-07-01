@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   OS.cpp                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 16:35:24 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 20:18:43 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 21:49:03 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ OS::OS(SDL_Renderer	*rend){
 	textRect.x = 220;textRect.y = 460;
 	versRect.x = 400;versRect.y = 460;
 	textSurface = nullptr;
+
 };
 OS::~OS(){};
 
@@ -85,4 +86,24 @@ void OS::display(){
 	SDL_RenderCopy(newrend, text, NULL, &textRect);
 	SDL_RenderCopy(newrend, verstext, NULL, &versRect);
 	getInfo();
+}
+
+OS::OS(OS const &cpy) {
+	*this = cpy;
+}
+
+OS &OS::operator=(OS const &cpy) {
+	_win = cpy._win;
+	_height = cpy._height;
+	_width = cpy._width;
+	_mode = cpy._mode;
+	this->font = cpy.font;
+	this->textColor = cpy.textColor;
+	this->textSurface = cpy.textSurface;
+	this->text = cpy.text;
+	this->verstext = cpy.verstext;
+	this->newrend = cpy.newrend;
+	this->textRect = cpy.textRect;
+	this->versRect = cpy.versRect;
+	return *this;
 }

@@ -6,7 +6,7 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 15:53:11 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/07/01 18:48:11 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 21:44:39 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,18 @@ void Hostname::display() {
 	wattroff(_win, COLOR_PAIR(1));
 	mvwaddstr(_win, 2, 1, _host.c_str());
 	mvwaddstr(_win, 3, 1, _user.c_str());
+}
+
+Hostname::Hostname(Hostname const &cpy) {
+	*this = cpy;
+}
+
+Hostname &Hostname::operator=(Hostname const &cpy) {
+	_win = cpy._win;
+	_height = cpy._height;
+	_width = cpy._width;
+	_mode = cpy._mode;
+	_host = cpy._host;
+	_user = cpy._user;
+	return *this;
 }

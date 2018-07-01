@@ -60,7 +60,7 @@ void Bluetooth::getInfo() {
 }
 
 Bluetooth::Bluetooth(Bluetooth const &cpy) {
-
+	*this = cpy;
 }
 
 Bluetooth &Bluetooth::operator=(Bluetooth const &cpy) {
@@ -71,5 +71,5 @@ Bluetooth &Bluetooth::operator=(Bluetooth const &cpy) {
 	_height = cpy._height;
 	_width = cpy._width;
 	_mode = cpy._mode;
-	return <#initializer#>;
+	return *this;
 }

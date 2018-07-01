@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   Network.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:42:23 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 20:51:34 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 20:56:41 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cstdlib>
 #include "Network.hpp"
 
-Network::Network() {
+Network::Network(SDL_Renderer	*rend) {
+	newrend = rend;
 	_mode = NCURSES;
 	_width = 30;
 	_height = 15;
+	font = TTF_OpenFont("test.ttf", 13);
 	_win = newwin(_height, _width, 6, 2 * _width + 5);
 }
 
@@ -39,6 +41,20 @@ void Network::getInfo() {
 }
 
 void Network::display() {
+	SDL_QueryTexture(usedtext, NULL, NULL, &dayRect.w, &dayRect.h);
+	SDL_FreeSurface(usedSurface);
+
+	dayRect.x = 450;dayRect.y = 60;
+	textColor.r = 0; textColor.g =255; textColor.b = 255; textColor.a = 255;
+	std::string Pockets = "Pockets In: " + _pocketsIn;
+	usedSurface = TTF_RenderText_Solid(font, Pockets.c_str(), textColor);
+	usedtext = SDL_CreateTextureFromSurface(newrend, usedSurface);
+	SDL_RenderCopy(newrend, usedtext, NULL, &dayRect);
+	Pockets = "Pockets Out: " + _pocketsOut;
+	dayRect.x = 450; dayRect.y = 80;
+	usedSurface = TTF_RenderText_Solid(font, Pockets.c_str(), textColor);
+	usedtext = SDL_CreateTextureFromSurface(newrend, usedSurface);
+	SDL_RenderCopy(newrend, usedtext, NULL, &dayRect);
 	static int f;
 	std::stringstream ss;
 	setlocale(LC_ALL, "");
