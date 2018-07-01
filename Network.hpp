@@ -6,7 +6,7 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:26:52 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 12:41:45 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 16:45:55 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ class Network : public IMonitorModule, public IMonitorDisplay  {
 	std::string _pocketsOut;
 public:
 	Network();
+	Network(Network const & cpy);
 	virtual ~Network();
 	virtual void getInfo();
 	virtual void display();
+	Network &operator=(Network const & cpy);
 };
 
 

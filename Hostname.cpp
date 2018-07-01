@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Hostname.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 15:53:11 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 20:46:17 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 18:48:11 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,14 @@ std::string Hostname::getUser(){
 //}
 
 void Hostname::display() {
-	start_color();
-	init_pair(1, COLOR_YELLOW, COLOR_BLACK);
 	setlocale(LC_ALL, "");
 	for (int i = 0; i < _height; i++) {
 		for (int j = 0; j < _width; j++) {
-//			if (i == 0 && j == 0)
-//				mvwaddstr(_win, i, j, "+");
-//			if (i == 4 && j == 0)
-//				mvwaddstr(_win, i, j, "+");
-//			if (i == 4 && j == 19)
-//				mvwaddstr(_win, i, j, "+");
-//			if (i == 0 && j == 19)
-//				mvwaddstr(_win, i, j, "+");
-			if (i == 0 || i == _height - 1)
+			if ((i == 0 && j == 0) || (i == _height - 1 && j == _width - 1))
+				mvwaddstr(_win, i, j, "+");
+			else if ((i == _height - 1 && j == 0) || (i == 0 && j == _width - 1))
+				mvwaddstr(_win, i, j, "+");
+			else if (i == 0 || i == _height - 1)
 				mvwaddstr(_win, i, j, "-");
 			else if (j == 0 || j == _width - 1)
 				mvwaddstr(_win, i, j, "|");

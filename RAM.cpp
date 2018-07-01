@@ -78,6 +78,7 @@ void RAM::display() {
 	for (int k = 4; k < 13; k++) {
 		mvwaddstr(_win, k, 4, "                      ");
 	}
+	//--------------------------------------------------
 	wattron(_win, COLOR_PAIR(4));
 	for (int k = 0; k < (_ramused * 10 / 8192); k++) {
 		mvwaddstr(_win, 13 - k, 4, "          ");

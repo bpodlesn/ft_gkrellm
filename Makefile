@@ -6,33 +6,35 @@
 #    By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/01 13:37:15 by vmazurok          #+#    #+#              #
-#    Updated: 2018/07/01 13:38:23 by vmazurok         ###   ########.fr        #
+#    Updated: 2018/07/01 18:52:01 by vmazurok         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	ft_sraka
-SRC		=	CPU.cpp \
-			DateTime.cpp \
-			Hostname.cpp \
-			OS.cpp \
-			RAM.cpp \
-			Network.cpp \
-			main.cpp
+NAME = ft_sraka
+SRC = CPU.cpp DateTime.cpp Hostname.cpp OS.cpp RAM.cpp main.cpp Network.cpp GPU.cpp \
+Bluetooth.cpp
+SDL2_F	= -F frameworks/ \
+	-framework SDL2 -framework SDL2_image -framework SDL2_ttf
+SDL2_P	= -rpath frameworks/
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 OBJ_DIR = objects
 CC = clang++
-FLAGS = -Wall -Werror -Wextra -std=c++98
-INCLUDES = -lncurses $(ncursesw5-config --cflags --libs)
+FLAGS = -Wall -Werror -Wextra -std=c++98 -O3 \
+	-I frameworks/SDL2.framework/Headers/ \
+	-I frameworks/SDL2_image.framework/SDL2_image/Headers \
+	-I /Library/Frameworks/SDL2.framework/Versions/Current/Headers
+
+INCLUDES = -lncurses $(ncursesw5-config --cflags --libs)\
 
 all: $(NAME)
 $(NAME): $(OBJ_DIR) $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME) $(INCLUDES)
+	@$(CC) $(FLAGS) $(OBJ) -o $(NAME) $(INCLUDES) $(SDL2_P) $(SDL2_F)
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 $(OBJ_DIR)/%.o: %.cpp
-	$(CC) $(FLAGS) -o $@ -c $<
+	@$(CC) $(FLAGS) -o $@ -c $<
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 re: fclean all

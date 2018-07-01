@@ -6,10 +6,11 @@
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:42:23 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 16:14:05 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 18:17:12 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cstdlib>
 #include "Network.hpp"
 
 Network::Network() {
@@ -43,15 +44,11 @@ void Network::display() {
 	setlocale(LC_ALL, "");
 	for (int i = 0; i < _height; i++) {
 		for (int j = 0; j < _width; j++) {
-//			if (i == 0 && j == 0)
-//				mvwaddstr(_win, i, j, "+");
-//			if (i == 4 && j == 0)
-//				mvwaddstr(_win, i, j, "+");
-//			if (i == 4 && j == 19)
-//				mvwaddstr(_win, i, j, "+");
-//			if (i == 0 && j == 19)
-//				mvwaddstr(_win, i, j, "+");
-			if (i == 0 || i == _height - 1)
+			if ((i == 0 && j == 0) || (i == _height - 1 && j == _width - 1))
+			mvwaddstr(_win, i, j, "+");
+			else if ((i == _height - 1 && j == 0) || (i == 0 && j == _width - 1))
+				mvwaddstr(_win, i, j, "+");
+			else if (i == 0 || i == _height - 1)
 				mvwaddstr(_win, i, j, "-");
 			else if (j == 0 || j == _width - 1)
 				mvwaddstr(_win, i, j, "|");
@@ -60,7 +57,7 @@ void Network::display() {
 	wrefresh(_win);
 	getInfo();
 	wattron(_win, COLOR_PAIR(1));
-	mvwaddstr(_win, 1, 2, "✉️     Network module    ✉️");
+	mvwaddstr(_win, 1, 2, "✉️     Network module   ✉️");
 	wattroff(_win, COLOR_PAIR(1));
 	mvwaddstr(_win, 2, 2, "Pockets In: ");
 	mvwaddstr(_win, 2, 15, _pocketsIn.c_str());
@@ -121,4 +118,19 @@ void Network::display() {
 		mvwaddstr(_win, i++, 3, "                        ");
 	}
 	f++;
+}
+
+Network::Network(Network const &cpy) {
+	*this = cpy;
+}
+
+Network &Network::operator=(Network const &cpy) {
+	this->_win = cpy._win;
+	this->_pocketsOut = cpy._pocketsOut;
+	this->_pocketsIn = cpy._pocketsIn;
+	this->_mode = cpy._mode;
+	this->_width = cpy._width;
+	this->_height = cpy._height;
+	//----------------------------------------
+	return *this;
 }

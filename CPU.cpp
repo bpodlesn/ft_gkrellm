@@ -5,18 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/30 16:04:58 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/07/01 13:30:38 by vmazurok         ###   ########.fr       */
+/*   Created: 2018/07/01 16:36:04 by vmazurok          #+#    #+#             */
+/*   Updated: 2018/07/01 18:12:48 by vmazurok         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "CPU.hpp"
 
-CPU::CPU(){
+CPU::CPU(SDL_Renderer *rend){
+	newrend = rend;
 	_mode = NCURSES;
 	_width = 30;
 	_height = 15;
 	_win = newwin(_height, _width, 6, _width + 3);
+	textColor.r = 0; textColor.g =255; textColor.b = 255; textColor.a = 255;
+	font = TTF_OpenFont("test.ttf", 13);
+	textRect.x = 210;textRect.y = 440;
+	coreRect.x = 510;coreRect.y = 465;
+	textSurface = nullptr;
+	coreSurface = nullptr;
+	getInfo();
 }
 
 CPU::~CPU(){
@@ -72,24 +80,30 @@ double CPU::getIdle(){
 void CPU::display() {
 	std::stringstream ss;
 	setlocale(LC_ALL, "");
+	SDL_QueryTexture(text, NULL, NULL, &textRect.w, &textRect.h);
+	SDL_QueryTexture(coretext, NULL, NULL, &coreRect.w, &coreRect.h);
+	SDL_FreeSurface(textSurface);
+	SDL_FreeSurface(coreSurface);
+	std::string newcores = "Cores: " + _cores;
+	textSurface = TTF_RenderText_Solid(font, _cpuName.c_str(), textColor);
+	coreSurface = TTF_RenderText_Solid(font, newcores.c_str(), textColor);
+	text = SDL_CreateTextureFromSurface(newrend, textSurface);
+	coretext = SDL_CreateTextureFromSurface(newrend, coreSurface);
 	for (int i = 0; i < _height; i++) {
 		for (int j = 0; j < _width; j++) {
-//			if (i == 0 && j == 0)
-//				mvwaddstr(_win, i, j, "+");
-//			if (i == 4 && j == 0)
-//				mvwaddstr(_win, i, j, "+");
-//			if (i == 4 && j == 19)
-//				mvwaddstr(_win, i, j, "+");
-//			if (i == 0 && j == 19)
-//				mvwaddstr(_win, i, j, "+");
-			if (i == 0 || i == _height - 1)
+			if ((i == 0 && j == 0) || (i == _height - 1 && j == _width - 1))
+				mvwaddstr(_win, i, j, "+");
+			else if ((i == _height - 1 && j == 0) || (i == 0 && j == _width - 1))
+				mvwaddstr(_win, i, j, "+");
+			else if (i == 0 || i == _height - 1)
 				mvwaddstr(_win, i, j, "-");
 			else if (j == 0 || j == _width - 1)
 				mvwaddstr(_win, i, j, "|");
 		}
 	}
 	wrefresh(_win);
-	getInfo();
+	SDL_RenderCopy(newrend, text, NULL, &textRect);
+	SDL_RenderCopy(newrend, coretext, NULL, &coreRect);
 	_cpuName.resize(26);
 	wattron(_win, COLOR_PAIR(1));
 	mvwaddstr(_win, 1, 2, "        CPU module");
@@ -140,4 +154,5 @@ void CPU::display() {
 	for (int k = 7; k < 14 - (_idle * 8 / 100); k++) {
 		mvwaddstr(_win, k, 20, "        ");
 	}
+	getInfo();
 }

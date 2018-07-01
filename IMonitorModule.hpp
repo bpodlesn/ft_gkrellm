@@ -14,6 +14,7 @@
 # define IMONITORMODULE_HPP
 #include <iostream>
 #include <sstream>
+#include <cstdlib>
 #include <limits.h>
 #include <stdio.h>
 #include <unistd.h>

@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:12:11 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 21:22:08 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 16:10:16 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,18 @@
 class DateTime : public IMonitorModule, public IMonitorDisplay{
 	std::string _day;
 	std::string _time;
-	// std::string _year;
-	// std::string _month;
-	// std::string _day;
-	// std::string _time;
+	TTF_Font *font;
+	SDL_Color textColor;
+	SDL_Surface* daySurface;
+	SDL_Texture* daytext;
+	SDL_Surface* timeSurface;
+	SDL_Texture* timetext;
+	SDL_Renderer	*newrend;
+	SDL_Rect 		dayRect;
+	SDL_Rect 		timeRect;
 public:
-	DateTime();
+	DateTime(){};
+	DateTime(SDL_Renderer *rend);
 	~DateTime();
 	virtual void getInfo();
 	virtual void display();
