@@ -6,13 +6,12 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:26:52 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 20:50:46 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 20:57:04 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef NETWORK_HPP
 # define NETWORK_HPP
-
 
 #include "IMonitorDisplay.hpp"
 #include "IMonitorModule.hpp"

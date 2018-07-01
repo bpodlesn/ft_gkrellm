@@ -3,20 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   GPU.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 18:22:41 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 19:25:48 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 21:23:20 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "GPU.hpp"
 
-GPU::GPU() {
+GPU::GPU(SDL_Renderer *rend) {
+	newrend = rend;
 	_mode = NCURSES;
 	_width = 30;
 	_height = 6;
 	_win = newwin(_height, _width, 22, _width + 3);
+	font = TTF_OpenFont("test.ttf", 13);
+	dayRect.w = 0; dayRect.h = 0;
 	getInfo();
 }
 
@@ -64,4 +67,23 @@ void GPU::display() {
 	mvwaddstr(_win, 3, 15, _VRAM.c_str());
 	mvwaddstr(_win, 4, 2, "Driver version: ");
 	mvwaddstr(_win, 4, 19, _driver.c_str());
+	// SDL_QueryTexture(used, NULL, NULL, &dayRect.w, &dayRect.h);
+	// SDL_FreeSurface(usedSurf);
+
+	// dayRect.x = 450;dayRect.y = 200;
+	// textColor.r = 0; textColor.g =255; textColor.b = 255; textColor.a = 255;
+	// std::string Pockets = "VideoCard: " + _name;
+	// usedSurf = TTF_RenderText_Solid(font, Pockets.c_str(), textColor);
+	// used = SDL_CreateTextureFromSurface(newrend, usedSurf);
+	// SDL_RenderCopy(newrend, used, NULL, &dayRect);
+	// Pockets = "VRAM: " + _VRAM;
+	// dayRect.x = 450; dayRect.y = 220;
+	// usedSurf = TTF_RenderText_Solid(font, Pockets.c_str(), textColor);
+	// used = SDL_CreateTextureFromSurface(newrend, usedSurf);
+	// SDL_RenderCopy(newrend, used, NULL, &dayRect);
+	// Pockets = "DRIVER: " + _driver;
+	// dayRect.x = 450; dayRect.y = 240;
+	// usedSurf = TTF_RenderText_Solid(font, Pockets.c_str(), textColor);
+	// used = SDL_CreateTextureFromSurface(newrend, usedSurf);
+	// SDL_RenderCopy(newrend, used, NULL, &dayRect);
 }

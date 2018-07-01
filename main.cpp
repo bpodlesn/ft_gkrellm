@@ -6,7 +6,7 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 16:35:10 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 20:50:52 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 21:23:03 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ TTF_Init();
 	RAM ram(rend);
 	Network n(rend);
 	DateTime time(rend);
-	GPU gpu;
+	GPU gpu(rend);
 	Bluetooth bl;
-	Audio audio;
+	Audio audio(rend);
 	SDL_SetRenderDrawColor(rend, 0xff, 0, 0, 0xFF);
 	while (done != false && getch() != 27) {
 		SDL_RenderClear(rend);
@@ -91,9 +91,9 @@ TTF_Init();
 		os.display();
 		time.display();
 		n.display();
-		gpu.display();
 		bl.display();
 		audio.display();
+		gpu.display();
 		SDL_RenderPresent(rend);
 		done = key(event);
 	}

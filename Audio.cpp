@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   Audio.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmazurok <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 20:09:22 by vmazurok          #+#    #+#             */
-/*   Updated: 2018/07/01 20:38:41 by vmazurok         ###   ########.fr       */
+/*   Updated: 2018/07/01 21:24:25 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Audio.hpp"
 
-Audio::Audio() {
+Audio::Audio(SDL_Renderer *rend) {
+	newrend = rend;
 	_mode = NCURSES;
 	_width = 30;
 	_height = 6;
 	_win = newwin(_height, _width , 22, _width * 2 + 5);
+	font = TTF_OpenFont("test.ttf", 13);
 	getInfo();
 }
 
@@ -45,6 +47,25 @@ void Audio::getInfo() {
 }
 
 void Audio::display() {
+	SDL_QueryTexture(usedtext, NULL, NULL, &dayRect.w, &dayRect.h);
+	SDL_FreeSurface(usedSurface);
+
+	dayRect.x = 450;dayRect.y = 120;
+	textColor.r = 0; textColor.g =255; textColor.b = 255; textColor.a = 255;
+	std::string Pockets = "Manufacturer: " + _man;
+	usedSurface = TTF_RenderText_Solid(font, Pockets.c_str(), textColor);
+	usedtext = SDL_CreateTextureFromSurface(newrend, usedSurface);
+	SDL_RenderCopy(newrend, usedtext, NULL, &dayRect);
+	Pockets = "MicroSample: " + _microSample;
+	dayRect.x = 450; dayRect.y = 140;
+	usedSurface = TTF_RenderText_Solid(font, Pockets.c_str(), textColor);
+	usedtext = SDL_CreateTextureFromSurface(newrend, usedSurface);
+	SDL_RenderCopy(newrend, usedtext, NULL, &dayRect);
+		Pockets = "AudioSample: " + _audioSample;
+	dayRect.x = 450; dayRect.y = 140;
+	usedSurface = TTF_RenderText_Solid(font, Pockets.c_str(), textColor);
+	usedtext = SDL_CreateTextureFromSurface(newrend, usedSurface);
+	SDL_RenderCopy(newrend, usedtext, NULL, &dayRect);
 	setlocale(LC_ALL, "");
 	for (int i = 0; i < _height; i++) {
 		for (int j = 0; j < _width; j++) {
