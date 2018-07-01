@@ -6,17 +6,24 @@
 /*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/30 16:12:40 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/06/30 21:43:52 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/07/01 16:09:39 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DateTime.hpp"
 
-DateTime::DateTime(){
+DateTime::DateTime(SDL_Renderer *rend){
+	newrend = rend;
 	_mode = 0;
 	_win = newwin(5, 23, 0, 60);
 	_width = 23;
 	_height = 5;
+	textColor.r = 0; textColor.g =255; textColor.b = 255; textColor.a = 255;
+	font = TTF_OpenFont("test.ttf", 15);
+	dayRect.x = 270;dayRect.y = 520;
+	timeRect.x = 525;timeRect.y = 520;
+	daySurface = nullptr;
+	timeSurface = nullptr;
 	getInfo();
 };
 DateTime::~DateTime(){};
@@ -46,6 +53,15 @@ std::string DateTime::getTime(){
 
 void DateTime::display(){
 	setlocale(LC_ALL, "");
+	SDL_QueryTexture(daytext, NULL, NULL, &dayRect.w, &dayRect.h);
+	SDL_FreeSurface(daySurface);
+	SDL_QueryTexture(timetext, NULL, NULL, &timeRect.w, &timeRect.h);
+	SDL_FreeSurface(timeSurface);
+
+	daySurface = TTF_RenderText_Solid(font, _day.c_str(), textColor);
+	timeSurface = TTF_RenderText_Solid(font, _time.c_str(), textColor);
+	daytext = SDL_CreateTextureFromSurface(newrend, daySurface);
+	timetext = SDL_CreateTextureFromSurface(newrend, timeSurface);
 	for (int i = 0; i < _height; i++) {
 		for (int j = 0; j < _width; j++) {
 //			if (i == 0 && j == 0)
@@ -72,5 +88,7 @@ void DateTime::display(){
 	mvwprintw(_win, 3, 8, "%s",  _time.c_str());
 	mvwaddstr(_win, 3, 1, "🕢");
 	mvwaddstr(_win, 3, 20, "🕠");
-	getInfo();
+	SDL_RenderCopy(newrend, daytext, NULL, &dayRect);
+	SDL_RenderCopy(newrend, timetext, NULL, &timeRect);
+		getInfo();
 }
